@@ -1,0 +1,13 @@
+.u-text-center {
+  text-align: center;
+}
+
+.u-mb-lg {
+  margin-bottom: 4rem;
+}
+
+.u-hidden-sm {
+  @media (max-width: 480px) {
+    display: none !important;
+  }
+}

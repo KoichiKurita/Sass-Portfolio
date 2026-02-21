@@ -1,0 +1,33 @@
+@use "../tools" as *;
+
+.l-header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 1.5rem 2rem;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+
+  &__logo {
+    font-weight: bold;
+  }
+
+  &__nav {
+    display: flex;
+    gap: 2rem;
+  }
+
+  &.is-scrolled {
+    background: rgba(0,0,0,0.8);
+  }
+}
+
+.l-footer {
+  text-align: center;
+  padding: 2rem;
+}

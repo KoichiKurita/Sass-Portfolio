@@ -1,0 +1,12 @@
+@use "../settings" as *;
+
+.c-button {
+  padding: 0.8rem 1.6rem;
+  border-radius: $radius;
+  background: var(--gradient-main);
+  color: #fff;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}

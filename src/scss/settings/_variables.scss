@@ -1,0 +1,32 @@
+/* ===============================
+   Design Tokens
+================================= */
+
+$color-primary: #6c63ff;
+$color-secondary: #ff6584;
+$color-dark: #0f0f1a;
+$color-light: #ffffff;
+
+$radius: 20px;
+
+$breakpoints: (
+  sm: 480px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px
+);
+
+/* CSS Variables */
+
+:root {
+  --color-bg: #0f0f1a;
+  --color-text: #ffffff;
+  --gradient-main: linear-gradient(135deg, #6c63ff, #ff6584);
+}
+
+
+html[data-theme="light"] {
+  --color-bg: #ffffff;
+  --color-text: #111;
+  --gradient-main: linear-gradient(135deg, #e66465, #9198e5);
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Frontend Engineer Portfolio built with Vite and Sass">
+  <meta property="og:title" content="Koichi Kurita Portfolio">
+  <meta property="og:description" content="Modern Frontend Portfolio">
+  <meta property="og:image" content="/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>Koichi Kurita Portfolio</title>
+</head>
+<body>
+
+<header class="l-header">
+  <div class="l-header__logo">Koichi Kurita</div>
+  <nav class="l-header__nav">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <button id="theme-toggle">🌙</button>
+  </nav>
+</header>
+
+<section class="p-hero">
+  <div class="p-hero__inner">
+    <h1 class="p-hero__title">Frontend Engineer</h1>
+    <p class="p-hero__subtitle">
+      Sass × FLOCSS × Modern CSS Architecture
+    </p>
+  </div>
+</section>
+
+<section id="about" class="u-text-center">
+  <div class="container">
+    <h2>About</h2>
+    <p>モダンCSS設計とSassを活用したポートフォリオ。</p>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <h2 class="u-text-center u-mb-lg">Skills</h2>
+    <div class="p-skills">
+      <div class="c-card">
+        <h3 class="c-card__title">Sass</h3>
+        <p class="c-card__text">設計重視のCSS設計</p>
+      </div>
+      <div class="c-card">
+        <h3 class="c-card__title">FLOCSS</h3>
+        <p class="c-card__text">保守性重視設計</p>
+      </div>
+      <div class="c-card">
+        <h3 class="c-card__title">Responsive</h3>
+        <p class="c-card__text">モバイルファースト</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <h2 class="u-text-center u-mb-lg">Projects</h2>
+    <div class="p-projects">
+      <div class="c-card c-card--featured">
+        <h3 class="c-card__title">Portfolio Site</h3>
+        <p class="c-card__text">Sass × GitHub Pages</p>
+      </div>
+      <div class="c-card">
+        <h3 class="c-card__title">Landing Page</h3>
+        <p class="c-card__text">Grid Layout Design</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="architecture">
+  <div class="container">
+    <h2 class="u-text-center u-mb-lg">Architecture</h2>
+
+    <div class="c-card">
+      <h3 class="c-card__title">ITCSS × FLOCSS</h3>
+      <p class="c-card__text">
+        レイヤー構造に基づき設計し、
+        保守性と拡張性を意識しています。
+      </p>
+    </div>
+
+    <div class="c-card">
+      <h3 class="c-card__title">Performance First</h3>
+      <p class="c-card__text">
+        Lighthouse 90以上を維持し、
+        無駄なJavaScriptを排除しています。
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer class="l-footer">
+  <p class="l-footer__text">© 2026 Koichi Kurita</p>
+</footer>
+
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+@use "sass:map";
+@use "../settings" as *;
+
+/* Responsive (Mobile First) */
+
+@mixin respond($size) {
+  @media (min-width: map.get($breakpoints, $size)) {
+    @content;
+  }
+}
+
+/* Flex Center */
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

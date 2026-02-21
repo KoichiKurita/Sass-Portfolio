@@ -1,0 +1,51 @@
+@use "../settings" as *;
+@use "../tools" as *;
+
+.p-hero {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 0 2rem;
+  background: var(--gradient-main);
+  color: #fff;
+  clip-path: none;
+  will-change: transform;
+  contain: layout paint;
+
+  &__title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+  }
+
+  &__subtitle {
+    margin-top: 1rem;
+    opacity: 0.85;
+  }
+}
+
+.p-hero::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
+  top: -200px;
+  right: -200px;
+  z-index: 0;
+}
+
+.p-hero__inner {
+  animation: heroFade 1.2s ease-out forwards;
+}
+
+@keyframes heroFade {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

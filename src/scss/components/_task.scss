@@ -1,0 +1,55 @@
+.p-task {
+  margin-top: 3rem;
+
+  &__input {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+
+    input {
+      flex: 1;
+      padding: 0.8rem;
+      border-radius: 8px;
+      border: none;
+    }
+  }
+
+  &__filter {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+
+    button {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+  }
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+
+  span.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+  }
+
+  .delete {
+    background: none;
+    border: none;
+    color: #ff6584;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Management</title>
+</head>
+<body>
+
+<header class="l-header">
+  <div class="l-header__logo">Koichi Kurita</div>
+  <nav class="l-header__nav">
+    <a href="/">Home</a>
+  </nav>
+</header>
+
+<section class="p-hero p-hero--small">
+  <div class="p-hero__inner">
+    <h1 class="p-hero__title">Task Management App</h1>
+    <p class="p-hero__subtitle">
+      CRUD × localStorage × State Management
+    </p>
+  </div>
+</section>
+
+<section class="container p-task">
+  <div class="c-card">
+
+    <div class="p-task__input">
+      <input type="text" id="task-input" placeholder="Add new task" />
+      <button id="add-task" class="c-button">Add</button>
+    </div>
+
+    <div class="p-task__filter">
+      <button data-filter="all">All</button>
+      <button data-filter="active">Active</button>
+      <button data-filter="completed">Completed</button>
+    </div>
+
+    <ul id="task-list" class="p-task__list"></ul>
+
+  </div>
+</section>
+
+<script type="module" src="/src/js/task/index.js"></script>
+</body>
+</html>
