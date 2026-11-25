@@ -28,4 +28,4 @@ window.addEventListener('scroll', () => {
   } else {
     header.classList.remove('is-scrolled')
   }
-})
+})const unused = 1
