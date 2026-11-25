@@ -22,3 +22,15 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+// フォーム部品はブラウザ既定のフォントを使うため、親から継承させる
+button,
+input {
+  font: inherit;
+}
+
+// ボタンの文字色はブラウザ既定（黒）だと暗い背景で読めないため、親から継承させる
+// ※ input は背景が白のままなので、文字色は既定（黒）のままにする
+button {
+  color: inherit;
+}

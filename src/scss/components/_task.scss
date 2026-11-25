@@ -1,6 +1,4 @@
 .p-task {
-  margin-top: 3rem;
-
   &__input {
     display: flex;
     gap: 1rem;
@@ -8,6 +6,7 @@
 
     input {
       flex: 1;
+      min-width: 0; // flex アイテムは中身の幅より縮まないため、狭い画面でボタンがはみ出すのを防ぐ
       padding: 0.8rem;
       border-radius: 8px;
       border: none;
@@ -16,12 +15,13 @@
 
   &__filter {
     display: flex;
-    gap: 1rem;
+    flex-wrap: wrap; // 狭い画面では折り返す
+    gap: 0.5rem;
     margin-bottom: 1.5rem;
 
     button {
       background: transparent;
-      border: 1px solid rgba(255,255,255,0.3);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       padding: 0.5rem 1rem;
       border-radius: 6px;
       cursor: pointer;
@@ -39,7 +39,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.8rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
   span.completed {
     text-decoration: line-through;

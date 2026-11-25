@@ -1,5 +1,5 @@
-@use "sass:map";
-@use "../settings" as *;
+@use 'sass:map';
+@use '../settings' as *;
 
 /* Responsive (Mobile First) */
 
@@ -15,4 +15,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* Auto Grid
+   画面幅に応じて列数が自動で増減するグリッド（メディアクエリ不要）
+   $min: 1列の最小幅 / $gap: 要素間の余白 */
+
+@mixin auto-grid($min: 240px, $gap: 1.5rem) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(#{$min}, 100%), 1fr));
+  gap: $gap;
 }
