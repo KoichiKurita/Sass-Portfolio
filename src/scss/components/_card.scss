@@ -22,6 +22,12 @@
     opacity: 0.8;
   }
 
+  // 注目の制作物を強調する Modifier
+  &--featured {
+    border-color: $color-primary;
+    box-shadow: 0 0 24px rgba($color-primary, 0.35);
+  }
+
   // カード全体をリンクにする場合の Modifier（<a class="c-card c-card--link">）
   &--link {
     display: block;

@@ -1,0 +1,8 @@
+@use '../tools' as *;
+
+// ===============================
+// Project: Architecture（トップページの設計方針）
+// ===============================
+.p-architecture {
+  @include auto-grid(320px);
+}

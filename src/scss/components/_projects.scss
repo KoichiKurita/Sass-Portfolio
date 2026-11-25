@@ -1,0 +1,13 @@
+@use '../tools' as *;
+
+// ===============================
+// Project: Projects（トップページの制作物一覧）
+// ===============================
+.p-projects {
+  @include auto-grid(280px);
+
+  // 注目の制作物は横幅いっぱいに表示する
+  > .c-card--featured {
+    grid-column: 1 / -1;
+  }
+}
