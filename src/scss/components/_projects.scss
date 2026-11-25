@@ -4,7 +4,7 @@
 // Project: Projects（トップページの制作物一覧）
 // ===============================
 .p-projects {
-  @include auto-grid(280px);
+  @include auto-grid(400px);
 
   // 注目の制作物は横幅いっぱいに表示する
   > .c-card--featured {
