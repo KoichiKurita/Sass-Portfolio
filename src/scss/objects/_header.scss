@@ -1,0 +1,50 @@
+@use '../tools' as *;
+
+// ===============================
+// Layout: Header（モバイルファースト）
+// ===============================
+.l-header {
+  position: fixed;
+  inset: 0 0 auto; // top: 0; right: 0; left: 0; の省略形
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  transition: background 0.3s ease;
+
+  &__logo {
+    font-size: 1rem;
+    font-weight: bold;
+    white-space: nowrap; // 狭い画面でロゴが2行に折り返さないようにする
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  // スクロール時（main.js が付与する状態クラス）
+  &.is-scrolled {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  // タブレット以上（768px〜）で余白と文字を大きくする
+  @include respond(md) {
+    padding: 1.25rem 2rem;
+
+    &__logo {
+      font-size: 1.2rem;
+    }
+
+    &__nav {
+      gap: 2rem;
+      font-size: 1rem;
+    }
+  }
+}
