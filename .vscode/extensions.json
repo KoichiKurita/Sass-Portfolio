@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "stylelint.vscode-stylelint",
+    "somewhatabstract.some-sass",
+    "editorconfig.editorconfig",
+    "usernamehw.errorlens",
+    "vitest.explorer",
+    "github.vscode-pull-request-github",
+    "github.vscode-github-actions",
+    "deque-systems.vscode-axe-linter"
+  ]
+}
