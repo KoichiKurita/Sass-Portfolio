@@ -27,7 +27,7 @@ export default defineConfig({
       provider: 'v8',
       // ロジックを持つモジュールだけを対象にする
       // index.js / main.js は DOM とイベントの結び付けが中心なので、将来の E2E テストで扱う
-      include: ['src/js/task/{state,storage,ui}.js'],
+      include: ['src/js/task/{app,state,storage,ui}.js'],
       reporter: ['text', 'html'],
       // これを下回ったら CI を失敗させる
       thresholds: {

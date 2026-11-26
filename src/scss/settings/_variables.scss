@@ -2,7 +2,12 @@
    Design Tokens
 ================================= */
 
+@use 'sass:color';
+
 $color-primary: #6c63ff;
+
+// 白い文字を載せるとき用の濃い紫（#6c63ff は白とのコントラスト比が 4.32 で、WCAG AA の 4.5 に届かない）
+$color-primary-strong: color.adjust($color-primary, $lightness: -6%);
 $color-secondary: #ff6584;
 $color-dark: #0f0f1a;
 $color-light: #fff;

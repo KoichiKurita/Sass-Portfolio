@@ -7,7 +7,10 @@ const header = document.querySelector('.l-header')
 if (toggle) {
   toggle.addEventListener('click', () => {
     const html = document.documentElement
-    html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark'
+    const isDark = html.dataset.theme !== 'dark' // 切り替え後にダークモードになるか
+    html.dataset.theme = isDark ? 'dark' : 'light'
+    // ボタンの押下状態（= ダークモードがオンか）をスクリーンリーダーに伝える
+    toggle.setAttribute('aria-pressed', String(isDark))
   })
 }
 

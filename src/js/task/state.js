@@ -9,6 +9,14 @@ export function getTasks() {
   return tasks
 }
 
+/**
+ * 次に使うタスクの ID（既存の最大値 + 1）
+ * Date.now() だと、同じミリ秒の間に追加したタスクの ID が重複するため使わない
+ */
+export function nextId() {
+  return tasks.reduce((max, t) => Math.max(max, t.id), 0) + 1
+}
+
 export function addTask(task) {
   tasks.push(task)
 }
