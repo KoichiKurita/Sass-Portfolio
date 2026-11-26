@@ -3,11 +3,12 @@
 import { defineConfig } from 'vitest/config'
 import { resolve } from 'node:path'
 import { securityMeta } from './build/security-meta.js'
+import { envPlaceholderCheck } from './build/env-placeholder-check.js'
 
 export default defineConfig({
   // GitHub Pages は https://<user>.github.io/<repo>/ で配信されるため、リポジトリ名をベースパスにする
   base: '/Sass-Portfolio/',
-  plugins: [securityMeta()],
+  plugins: [securityMeta(), envPlaceholderCheck()],
   build: {
     rolldownOptions: {
       // マルチページ構成：ビルド対象の HTML を明示する

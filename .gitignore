@@ -19,7 +19,8 @@ yarn-error.log*
 # ------------------------------
 # Environment variables
 # ------------------------------
-.env
+# 秘密情報やローカル専用の設定は .env.local / .env.*.local に書く（コミットしない）
+# .env は公開してよい設定だけを書き、コミットする（VITE_ で始まる変数はブラウザに公開される）
 .env.local
 .env.*.local
 

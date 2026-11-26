@@ -3,12 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Frontend Engineer Portfolio built with Vite and Sass" />
-    <meta property="og:title" content="Koichi Kurita Portfolio" />
-    <meta property="og:description" content="Modern Frontend Portfolio" />
-    <meta property="og:image" content="/ogp.png" />
-    <meta name="twitter:card" content="summary_large_image" />
     <title>Koichi Kurita Portfolio</title>
+    <meta
+      name="description"
+      content="Sass（ITCSS × FLOCSS）と Vite で構築したフロントエンドエンジニアのポートフォリオです。"
+    />
+    <link rel="canonical" href="%VITE_SITE_URL%/" />
+
+    <!-- アイコン（タブ・ブックマーク・スマホのホーム画面） -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#0f0f1a" />
+
+    <!-- OGP：SNS やチャットで URL を共有したときに表示されるカード -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Koichi Kurita Portfolio" />
+    <meta property="og:locale" content="ja_JP" />
+    <meta property="og:url" content="%VITE_SITE_URL%/" />
+    <meta property="og:title" content="Koichi Kurita Portfolio" />
+    <meta
+      property="og:description"
+      content="Sass（ITCSS × FLOCSS）と Vite で構築したフロントエンドエンジニアのポートフォリオです。"
+    />
+    <meta property="og:image" content="%VITE_SITE_URL%/ogp.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Koichi Kurita - Frontend Engineer Portfolio" />
+    <meta name="twitter:card" content="summary_large_image" />
     <!-- 保存済みのテーマを描画前に反映する（module にしない：理由は theme-init.js を参照） -->
     <script src="/theme-init.js"></script>
   </head>
