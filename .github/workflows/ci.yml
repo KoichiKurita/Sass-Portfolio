@@ -57,12 +57,46 @@ jobs:
           path: ./dist
 
   # ---------------------------------
-  # デプロイ：main のときだけ、品質チェックが通った後に実行する
+  # E2E テスト：本番と同じビルド結果を、実際のブラウザで操作して確認する
+  # （アクセシビリティの自動検査も含む）
+  # ---------------------------------
+  e2e:
+    name: E2E (Playwright)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Run E2E tests
+        run: npm run test:e2e
+
+      # 失敗したときに、操作の記録（trace）付きのレポートをダウンロードできるようにする
+      - name: Upload report
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
+
+  # ---------------------------------
+  # デプロイ：main のときだけ、品質チェックと E2E テストが通った後に実行する
   # ---------------------------------
   deploy:
     name: Deploy to GitHub Pages
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-    needs: ci
+    needs: [ci, e2e]
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:

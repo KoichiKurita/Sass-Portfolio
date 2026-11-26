@@ -4,7 +4,7 @@ import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
   // ビルド成果物とカバレッジレポートは自動生成物なので、チェック対象から外す
-  globalIgnores(['dist/', 'coverage/']),
+  globalIgnores(['dist/', 'coverage/', 'test-results/', 'playwright-report/']),
   {
     files: ['**/*.{js,mjs,cjs}'],
     plugins: { js },
