@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- サイトのアイコン：ブランドのグラデーションの角丸四角に、線で描いた「K」 -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4f44ff" />
+      <stop offset="1" stop-color="#c2185b" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#g)" />
+  <!-- 文字ではなく線で描くと、閲覧者の環境のフォントに左右されない -->
+  <path
+    d="M22 16v32M44 16 26 33.5M30 30l14 18"
+    fill="none"
+    stroke="#fff"
+    stroke-width="6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
