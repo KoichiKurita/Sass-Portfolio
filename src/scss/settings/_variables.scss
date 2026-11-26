@@ -9,6 +9,9 @@ $color-primary: #6c63ff;
 // 白い文字を載せるとき用の濃い紫（#6c63ff は白とのコントラスト比が 4.32 で、WCAG AA の 4.5 に届かない）
 $color-primary-strong: color.adjust($color-primary, $lightness: -6%);
 $color-secondary: #ff6584;
+
+// 白い文字を載せるとき用の濃いピンク（#ff6584 は白とのコントラスト比が 2.82）
+$color-secondary-strong: #c2185b;
 $color-dark: #0f0f1a;
 $color-light: #fff;
 $radius: 20px;
@@ -18,17 +21,3 @@ $breakpoints: (
   lg: 1024px,
   xl: 1280px,
 );
-
-/* CSS Variables */
-
-:root {
-  --color-bg: #0f0f1a;
-  --color-text: #fff;
-  --gradient-main: linear-gradient(135deg, #6c63ff, #ff6584);
-}
-
-html[data-theme='light'] {
-  --color-bg: #fff;
-  --color-text: #111;
-  --gradient-main: linear-gradient(135deg, #e66465, #9198e5);
-}

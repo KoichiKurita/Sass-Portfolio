@@ -3,10 +3,13 @@
 .c-button {
   padding: 0.8rem 1.6rem;
   border-radius: $radius;
+  border: none;
   background: var(--gradient-main);
   color: #fff;
+  cursor: pointer;
 
+  // 半透明にすると文字のコントラストも下がるため、背景を少し暗くする
   &:hover {
-    opacity: 0.8;
+    filter: brightness(0.9);
   }
 }

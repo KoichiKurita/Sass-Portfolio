@@ -12,7 +12,7 @@
   z-index: 2000; // 固定ヘッダー（z-index: 1000）より手前に表示する
   padding: 0.75rem 1rem;
   border-radius: 8px;
-  background: $color-primary;
+  background: $color-primary-strong; // 白い文字とのコントラスト比 5.83
   color: #fff;
   transform: translateY(-200%); // 通常は画面の外に隠す
 

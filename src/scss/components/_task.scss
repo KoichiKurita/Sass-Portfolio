@@ -11,7 +11,7 @@
       min-width: 0; // flex アイテムは中身の幅より縮まないため、狭い画面でボタンがはみ出すのを防ぐ
       padding: 0.8rem;
       border-radius: 8px;
-      border: none;
+      border: 1px solid var(--color-border);
     }
   }
 
@@ -23,7 +23,7 @@
 
     button {
       background: transparent;
-      border: 1px solid rgb(255 255 255 / 30%);
+      border: 1px solid var(--color-border);
       padding: 0.5rem 1rem;
       border-radius: 6px;
       cursor: pointer;
@@ -32,13 +32,14 @@
       &[aria-pressed='true'] {
         background: $color-primary-strong;
         border-color: $color-primary-strong;
+        color: #fff; // テーマによらず白（ライトテーマでは文字色が黒になるため明示する）
       }
     }
   }
 
   &__noscript {
     margin-bottom: 1.5rem;
-    color: $color-secondary;
+    color: var(--color-danger);
   }
 
   &__list {
@@ -52,7 +53,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.8rem 0;
-  border-bottom: 1px solid rgb(255 255 255 / 10%);
+  border-bottom: 1px solid var(--color-border-subtle);
 
   span.completed {
     text-decoration: line-through;
@@ -77,7 +78,7 @@
     min-block-size: 2.75rem;
     background: none;
     border: none;
-    color: #ff6584;
+    color: var(--color-danger);
     cursor: pointer;
   }
 }
