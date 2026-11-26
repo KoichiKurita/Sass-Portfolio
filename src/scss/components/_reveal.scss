@@ -1,0 +1,25 @@
+// ===============================
+// スクロールに合わせたフェードイン（CSS だけで実装）
+// ===============================
+// 以前は JavaScript（IntersectionObserver）でクラスを付けて表示していたため、
+// JS の読み込みに失敗するとコンテンツが透明のまま表示されなかった。
+// ここでは「表示する」が初期状態で、対応ブラウザでだけ演出を足す（プログレッシブエンハンスメント）。
+
+@supports (animation-timeline: view()) {
+  // 「視差効果を減らす」設定の人には、演出そのものを適用しない
+  @media (prefers-reduced-motion: no-preference) {
+    .c-card,
+    section {
+      animation: reveal linear both;
+      animation-timeline: view(); // 時間ではなく「画面内に入ってくる度合い」で進める
+      animation-range: entry 10% entry 60%; // 画面に入り始めてから 6 割入るまでに表示しきる
+    }
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+}

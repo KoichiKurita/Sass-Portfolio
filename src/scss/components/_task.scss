@@ -36,6 +36,11 @@
     }
   }
 
+  &__noscript {
+    margin-bottom: 1.5rem;
+    color: $color-secondary;
+  }
+
   &__list {
     list-style: none;
     padding: 0;
