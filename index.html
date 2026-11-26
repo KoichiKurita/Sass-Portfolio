@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja" data-theme="dark">
+<html lang="ja">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,6 +9,8 @@
     <meta property="og:image" content="/ogp.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <title>Koichi Kurita Portfolio</title>
+    <!-- 保存済みのテーマを描画前に反映する（module にしない：理由は theme-init.js を参照） -->
+    <script src="/theme-init.js"></script>
   </head>
   <body>
     <a class="c-skip-link" href="#main">本文へスキップ</a>
@@ -18,13 +20,19 @@
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
-        <button id="theme-toggle" type="button" aria-label="ダークモード" aria-pressed="true">
-          🌙
+        <button
+          id="theme-toggle"
+          class="c-theme-toggle"
+          type="button"
+          aria-label="ダークモード"
+          aria-pressed="true"
+        >
+          <span class="c-theme-toggle__icon" aria-hidden="true"></span>
         </button>
       </nav>
     </header>
 
-    <main>
+    <main id="main">
       <section class="p-hero">
         <div class="p-hero__inner">
           <h1 class="p-hero__title">Frontend Engineer</h1>

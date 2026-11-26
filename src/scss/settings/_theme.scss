@@ -1,0 +1,51 @@
+// ===============================
+// テーマ（ダーク／ライト）ごとの色：CSS 変数
+// ===============================
+// 優先順位：1. ユーザーが選んだテーマ（data-theme 属性） > 2. OS の設定 > 3. 既定（ダーク）
+@use 'variables' as *;
+
+@mixin dark-tokens {
+  color-scheme: dark; // フォーム部品やスクロールバーなど、ブラウザ標準の部品もダーク表示にする
+
+  --color-bg: #{$color-dark};
+  --color-text: #fff;
+  --color-surface: rgb(255 255 255 / 8%); // カードなどの面
+  --color-border: rgb(255 255 255 / 20%);
+  --color-border-subtle: rgb(255 255 255 / 10%);
+  --color-header-bg: rgb(0 0 0 / 40%);
+  --color-header-bg-scrolled: rgb(0 0 0 / 80%);
+  --color-danger: #{$color-secondary}; // 暗い背景とのコントラスト比 6.75
+}
+
+@mixin light-tokens {
+  color-scheme: light;
+
+  --color-bg: #f5f5fa;
+  --color-text: #111;
+  --color-surface: #fff;
+  --color-border: rgb(0 0 0 / 15%);
+  --color-border-subtle: rgb(0 0 0 / 10%);
+  --color-header-bg: rgb(255 255 255 / 70%);
+  --color-header-bg-scrolled: rgb(255 255 255 / 92%);
+  --color-danger: #{$color-secondary-strong}; // 明るい背景とのコントラスト比 5.4
+}
+
+// 3. 既定はダーク。テーマに関係なく共通の値もここに置く
+:root {
+  @include dark-tokens;
+
+  // 白い文字を載せるグラデーション（両端・中間とも白とのコントラスト比 5.8 以上）
+  --gradient-main: linear-gradient(135deg, #{$color-primary-strong}, #{$color-secondary-strong});
+}
+
+// 2. OS がライト設定で、ユーザーがまだテーマを選んでいない（data-theme 属性がない）とき
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    @include light-tokens;
+  }
+}
+
+// 1. ユーザーが選んだテーマ（OS の設定より優先する）
+:root[data-theme='light'] {
+  @include light-tokens;
+}

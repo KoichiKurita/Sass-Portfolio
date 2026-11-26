@@ -12,7 +12,7 @@
   align-items: center;
   gap: 1rem;
   padding: 0.75rem 1rem;
-  background: rgb(0 0 0 / 40%);
+  background: var(--color-header-bg);
   backdrop-filter: blur(10px);
   transition: background 0.3s ease;
 
@@ -31,7 +31,7 @@
 
   // スクロール時（main.js が付与する状態クラス）
   &.is-scrolled {
-    background: rgb(0 0 0 / 80%);
+    background: var(--color-header-bg-scrolled);
   }
 
   // タブレット以上（768px〜）で余白と文字を大きくする

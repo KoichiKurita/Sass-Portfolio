@@ -26,3 +26,19 @@
   grid-template-columns: repeat(auto-fit, minmax(min(#{$min}, 100%), 1fr));
   gap: $gap;
 }
+
+/* Light Theme
+   ライトテーマのときだけ適用するスタイル（OS の設定・ユーザーの選択の両方に対応）
+   使い方：.c-foo { @include light-theme { color: black; } } */
+
+@mixin light-theme {
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme]) & {
+      @content;
+    }
+  }
+
+  :root[data-theme='light'] & {
+    @content;
+  }
+}

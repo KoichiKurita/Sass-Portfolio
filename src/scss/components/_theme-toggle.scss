@@ -1,0 +1,26 @@
+@use '../tools' as *;
+
+// ===============================
+// Component: Theme Toggle（ダーク／ライトの切り替えボタン）
+// ===============================
+.c-theme-toggle {
+  display: grid;
+  place-items: center;
+  min-inline-size: 2.75rem;
+  min-block-size: 2.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+
+  // アイコンは CSS で表示する：JS の実行前や、OS の設定に従っているときも正しい絵柄になる
+  &__icon::before {
+    content: '🌙';
+  }
+
+  @include light-theme {
+    .c-theme-toggle__icon::before {
+      content: '☀️';
+    }
+  }
+}
