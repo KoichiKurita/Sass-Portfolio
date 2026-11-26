@@ -54,7 +54,7 @@ Sass（ITCSS × FLOCSS）と Vite で構築した、フロントエンドエン�
 | マークアップ / スタイル | HTML, Sass（`@use` / `@forward`）, ITCSS, FLOCSS + BEM, CSS 変数 |
 | スクリプト              | JavaScript（ES Modules）                                         |
 | ビルド                  | Vite 8（自作プラグイン 2 つ）                                    |
-| テスト                  | Vitest 5, jsdom, カバレッジ（v8）                                |
+| テスト                  | Vitest 5, jsdom, カバレッジ（v8）, Playwright（E2E）, axe-core   |
 | 静的解析・整形          | ESLint, Stylelint（standard-scss）, Prettier                     |
 | Git フック              | husky 9, lint-staged                                             |
 | CI/CD                   | GitHub Actions → GitHub Pages                                    |
@@ -103,36 +103,45 @@ src/js/task/
 
 ### 3 段構えのチェック
 
-| タイミング | 内容                                                 | 仕組み                        |
-| ---------- | ---------------------------------------------------- | ----------------------------- |
-| 保存時     | ESLint / Stylelint の自動修正、Prettier の整形       | VS Code の設定（`.vscode/`）  |
-| コミット時 | 変更したファイルだけ lint・整形                      | husky + lint-staged           |
-| push 時    | ユニットテスト                                       | husky                         |
-| PR 時      | すべてのチェック（通らないと main にマージできない） | GitHub Actions + ブランチ保護 |
+| タイミング | 内容                                                              | 仕組み                        |
+| ---------- | ----------------------------------------------------------------- | ----------------------------- |
+| 保存時     | ESLint / Stylelint の自動修正、Prettier の整形                    | VS Code の設定（`.vscode/`）  |
+| コミット時 | 変更したファイルだけ lint・整形                                   | husky + lint-staged           |
+| push 時    | ユニットテスト                                                    | husky                         |
+| PR 時      | すべてのチェックと E2E テスト（通らないと main にマージできない） | GitHub Actions + ブランチ保護 |
 
 ### CI / CD
 
 ```mermaid
 flowchart LR
-  PR[Pull Request] --> CI
-  subgraph CI[CI：Lint / Build / Audit]
+  PR[Pull Request] --> CI & E2E
+  subgraph CI[Lint / Build / Audit]
     direction LR
     L[ESLint<br>Stylelint] --> F[Prettier] --> T[Vitest<br>カバレッジ 90% 以上] --> B[Vite build] --> A[npm audit]
   end
-  CI -->|main のときだけ| D[GitHub Pages<br>へデプロイ]
+  subgraph E2E[E2E（Playwright）]
+    direction LR
+    P[PC・スマホの<br>ブラウザで操作] --> X[axe-core<br>WCAG 2.2 AA]
+  end
+  CI & E2E -->|main のときだけ| D[GitHub Pages<br>へデプロイ]
 ```
 
 - PR でも CI を実行し、**品質ゲートを通らないものはマージもデプロイもされない**
+- 2 つのジョブは並行して実行するため、E2E を追加しても待ち時間はほとんど増えない
 - 権限は最小限（既定は読み取り専用。デプロイのジョブだけ書き込みを許可）
 - 公式アクション（`actions/deploy-pages`）と OIDC でデプロイし、長期間有効なシークレットを使わない
 
 ### テスト
 
-| 項目       | 内容                                                                     |
-| ---------- | ------------------------------------------------------------------------ |
-| テスト数   | 68 件（7 ファイル）                                                      |
-| カバレッジ | 行 100% / 分岐 97.8% / 関数 100%（しきい値 90% を下回ると CI が失敗）    |
-| 主な対象   | 状態管理、データ検証、DOM の描画、イベント処理、テーマ、ビルドプラグイン |
+| 種類                 | ツール                     | 件数                            | 内容                                                                                                        |
+| -------------------- | -------------------------- | ------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| ユニットテスト       | Vitest + jsdom             | 68 件                           | 状態管理、データ検証、DOM の描画、イベント処理、テーマ、ビルドプラグイン                                    |
+| E2E テスト           | Playwright                 | 33 件（PC 17 件・スマホ 16 件） | キーボード操作とフォーカス、テーマの保存と OS への追従、スキップリンク、JS 無効時の表示、CSP 違反がないこと |
+| アクセシビリティ検査 | axe-core（E2E の中で実行） | 上記に含む                      | ダーク / ライト × 2 ページを WCAG 2.2 AA の基準で検査                                                       |
+
+- ユニットテストのカバレッジ：行 100% / 分岐 97.8% / 関数 100%（しきい値 90% を下回ると CI が失敗）
+- E2E テストは、本番と同じビルド結果（`vite preview`）を実際のブラウザで操作する。CSP など本番ビルドだけに入る設定も含めて確認できる
+- 要素は CSS のクラス名ではなく、**スクリーンリーダーが読み上げる「役割」と「名前」**（`getByRole`）で探す。役割や名前が正しくなければテストが失敗するため、テストを書くこと自体がアクセシビリティの確認になる
 
 XSS の修正やデータ検証などは**回帰テスト**として残しています。
 たとえば `ui.js` を修正前の `innerHTML` を使った実装に戻すと、XSS のテストを含む 6 件が失敗します。
@@ -164,7 +173,7 @@ XSS に対して、入力・出力・実行の 3 層で防御しています（�
 
 ## アクセシビリティ
 
-WCAG 2.2 AA を目標にしています。axe-core による自動検査で、**ダーク / ライト × 2 ページのすべてで違反 0 件**です。
+WCAG 2.2 AA を目標にしています。axe-core による自動検査を **E2E テストとして CI で毎回実行**しており、ダーク / ライト × 2 ページのすべてで違反 0 件です。違反があると PR をマージできません。
 
 | 対応           | 内容                                                                                                                           |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------ |
@@ -174,13 +183,13 @@ WCAG 2.2 AA を目標にしています。axe-core による自動検査で、**
 | 見た目         | コントラスト比 4.5 以上（白い文字を載せるグラデーションは 5.8 以上）、`:focus-visible` によるフォーカス表示、削除ボタンは 44px |
 | 動き           | `prefers-reduced-motion` のときはアニメーションを止める                                                                        |
 
-自動検査で見つけられるのは問題の一部だけなので、キーボードだけでの操作確認も行っています。
+自動検査で見つけられるのは問題の一部だけなので、キーボードだけでの操作（フォーカスの移動を含む）も E2E テストで確認しています。
 
 ---
 
 ## パフォーマンス
 
-Lighthouse 12 で測定（`npm run preview` のローカル環境、2026 年 11 月）。
+[PageSpeed Insights](https://pagespeed.web.dev/) で公開サイトを測定（Lighthouse 13.6、2026 年 11 月 27 日）。
 
 | ページ     | 端末         | Performance | Accessibility | Best Practices | SEO |
 | ---------- | ------------ | :---------: | :-----------: | :------------: | :-: |
@@ -189,7 +198,13 @@ Lighthouse 12 で測定（`npm run preview` のローカル環境、2026 年 11 
 | タスク管理 | モバイル     |     100     |      100      |      100       | 100 |
 | タスク管理 | デスクトップ |     100     |      100      |      100       | 100 |
 
-モバイルの LCP は 0.9 秒、CLS は 0、TBT は 0 ms です。主な工夫：
+| 指標                          | トップ（モバイル） | トップ（デスクトップ） | タスク管理（モバイル） | タスク管理（デスクトップ） |
+| ----------------------------- | :----------------: | :--------------------: | :--------------------: | :------------------------: |
+| LCP（最大のコンテンツの表示） |       0.8 秒       |         0.2 秒         |         0.8 秒         |           0.2 秒           |
+| CLS（レイアウトのずれ）       |         0          |           0            |           0            |             0              |
+| TBT（操作できない時間）       |        0 ms        |          0 ms          |          0 ms          |            0 ms            |
+
+モバイルは、Moto G Power 相当の端末と低速 4G 回線を再現した条件での測定です。主な工夫：
 
 - スクロール演出を **CSS のスクロール駆動アニメーション**（`animation-timeline: view()`）で実装し、IntersectionObserver を削除
 - 外部フォントや外部スクリプトを使わない
@@ -197,7 +212,8 @@ Lighthouse 12 で測定（`npm run preview` のローカル環境、2026 年 11 
 - スクロールイベントに `{ passive: true }` を指定
 
 > [!NOTE]
-> ローカル環境はネットワークの遅延がないため、公開サイトでの数値は多少下がる可能性があります。
+> PageSpeed Insights は「レンダリングをブロックしているリクエスト」として `theme-init.js` を挙げます。
+> これは、保存済みのテーマを描画前に反映して**画面のちらつきを防ぐために、意図的に同期で読み込んでいる**ものです（[設計判断の記録](#設計判断の記録)を参照）。
 
 ---
 
@@ -230,6 +246,7 @@ Lighthouse 12 で測定（`npm run preview` のローカル環境、2026 年 11 
 | M2             | CI/CD・品質保証（GitHub Actions、Dependabot、Vitest、husky、Stylelint）           |
 | M3             | セキュリティ強化・UX・a11y（CSP、アクセシビリティ、テーマ、OGP）                  |
 | M4             | ドキュメント（この README）                                                       |
+| M5             | 継続的な品質改善（E2E テストの自動化、公開サイトでの性能測定、制作物の追加）      |
 
 ---
 
@@ -244,16 +261,17 @@ npm ci          # 依存関係のインストールと、Git フックの有効�
 npm run dev     # http://localhost:5173/Sass-Portfolio/
 ```
 
-| コマンド                | 内容                                                   |
-| ----------------------- | ------------------------------------------------------ |
-| `npm run dev`           | 開発サーバーを起動                                     |
-| `npm run build`         | 本番用にビルド（`dist/`）                              |
-| `npm run preview`       | ビルド結果を確認（CSP など本番だけの設定もここで確認） |
-| `npm test`              | ユニットテスト                                         |
-| `npm run test:watch`    | ファイルの保存に合わせてテストを再実行                 |
-| `npm run test:coverage` | カバレッジ付きでテスト                                 |
-| `npm run lint`          | ESLint と Stylelint                                    |
-| `npm run format`        | Prettier で整形                                        |
+| コマンド                | 内容                                                            |
+| ----------------------- | --------------------------------------------------------------- |
+| `npm run dev`           | 開発サーバーを起動                                              |
+| `npm run build`         | 本番用にビルド（`dist/`）                                       |
+| `npm run preview`       | ビルド結果を確認（CSP など本番だけの設定もここで確認）          |
+| `npm test`              | ユニットテスト                                                  |
+| `npm run test:watch`    | ファイルの保存に合わせてテストを再実行                          |
+| `npm run test:coverage` | カバレッジ付きでテスト                                          |
+| `npm run test:e2e`      | E2E テスト（初回のみ `npx playwright install chromium` が必要） |
+| `npm run lint`          | ESLint と Stylelint                                             |
+| `npm run format`        | Prettier で整形                                                 |
 
 ### ディレクトリ構成
 
@@ -262,6 +280,7 @@ npm run dev     # http://localhost:5173/Sass-Portfolio/
 ├── .github/         CI のワークフロー、Dependabot、PR / Issue のテンプレート
 ├── .husky/          Git フック（pre-commit / pre-push）
 ├── build/           自作の Vite プラグインとそのテスト
+├── e2e/             E2E テスト（Playwright）
 ├── public/          そのまま配信するファイル（favicon、OGP 画像、theme-init.js）
 ├── src/
 │   ├── js/          JavaScript（テストは同じ場所に *.test.js）
@@ -270,17 +289,17 @@ npm run dev     # http://localhost:5173/Sass-Portfolio/
 ├── task/            タスク管理アプリのページ
 ├── index.html       トップページ
 ├── .env             公開してよい設定（サイトの URL）
-└── vite.config.js   ビルドとテストの設定
+├── playwright.config.js  E2E テストの設定
+└── vite.config.js   ビルドとユニットテストの設定
 ```
 
 ---
 
 ## 今後の課題
 
-- 公開サイトに対する Lighthouse の定期測定（Lighthouse CI）
-- Playwright による E2E テストと、axe-core による自動検査を CI に組み込む
-- `main.js`（テーマ切替・スクロール演出）の E2E テスト
+- 公開サイトに対する Lighthouse の定期測定の自動化（Lighthouse CI）
 - HTTP ヘッダーを設定できるホスティングへの移行（`frame-ancestors` などの CSP を使うため）
+- 他の制作物（Java の TaskManager など）の追加
 
 ---
 
