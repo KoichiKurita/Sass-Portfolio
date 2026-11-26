@@ -39,21 +39,22 @@
   position: absolute;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.15), transparent 70%);
+  background: radial-gradient(circle, rgb(255 255 255 / 15%), transparent 70%);
   top: -200px;
   right: -200px;
   z-index: 0;
 }
 
 .p-hero__inner {
-  animation: heroFade 1.2s ease-out forwards;
+  animation: hero-fade 1.2s ease-out forwards;
 }
 
-@keyframes heroFade {
+@keyframes hero-fade {
   from {
     opacity: 0;
     transform: translateY(40px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

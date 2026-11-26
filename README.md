@@ -1,6 +1,7 @@
 # Sass Portfolio
 
 ## 🚀 Overview
+
 実務を想定したフロントエンド設計と
 UIロジック実装をまとめたポートフォリオです。
 
@@ -12,6 +13,7 @@ https://KoichiKurita.github.io/Sass-Portfolio/
 ---
 
 ## 🌟 Featured Project
+
 ### Task Management App
 
 - CRUD操作
@@ -28,12 +30,14 @@ UIとロジックの責務分離を意識しました。
 ## 🏗 Architecture
 
 ### 🎯 CSS Architecture
+
 - ITCSSレイヤー構造
 - FLOCSS命名規則
 - Design Token管理（Sass + CSS変数併用）
 - Mobile First設計
 
 ### ⚙ Build Environment
+
 - Vite（高速ビルド & HMR）
 - Sass（@use / @forward管理）
 - ESLint

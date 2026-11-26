@@ -34,8 +34,11 @@ jobs:
       - name: Install dependencies
         run: npm ci # package-lock.json どおりに厳密にインストールする
 
-      - name: Lint
+      - name: Lint (JS / SCSS)
         run: npm run lint
+
+      - name: Format check
+        run: npm run format:check
 
       - name: Test (with coverage)
         run: npm run test:coverage # カバレッジがしきい値を下回ると失敗する
