@@ -6,12 +6,6 @@
   margin-bottom: 4rem;
 }
 
-.u-hidden-sm {
-  @media (width <= 480px) {
-    display: none !important;
-  }
-}
-
 // 画面には表示せず、スクリーンリーダーには読み上げさせる
 // （display: none や visibility: hidden は読み上げからも消えてしまうため使わない）
 .u-visually-hidden {
