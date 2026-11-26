@@ -11,89 +11,94 @@
     <title>Koichi Kurita Portfolio</title>
   </head>
   <body>
+    <a class="c-skip-link" href="#main">本文へスキップ</a>
     <header class="l-header">
       <div class="l-header__logo">Koichi Kurita</div>
-      <nav class="l-header__nav">
+      <nav class="l-header__nav" aria-label="メイン">
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
-        <button id="theme-toggle">🌙</button>
+        <button id="theme-toggle" type="button" aria-label="ダークモード" aria-pressed="true">
+          🌙
+        </button>
       </nav>
     </header>
 
-    <section class="p-hero">
-      <div class="p-hero__inner">
-        <h1 class="p-hero__title">Frontend Engineer</h1>
-        <p class="p-hero__subtitle">Sass × FLOCSS × Modern CSS Architecture</p>
-      </div>
-    </section>
+    <main>
+      <section class="p-hero">
+        <div class="p-hero__inner">
+          <h1 class="p-hero__title">Frontend Engineer</h1>
+          <p class="p-hero__subtitle">Sass × FLOCSS × Modern CSS Architecture</p>
+        </div>
+      </section>
 
-    <section id="about" class="u-text-center">
-      <div class="container">
-        <h2>About</h2>
-        <p>モダンCSS設計とSassを活用したポートフォリオ。</p>
-      </div>
-    </section>
+      <section id="about" class="u-text-center">
+        <div class="container">
+          <h2>About</h2>
+          <p>モダンCSS設計とSassを活用したポートフォリオ。</p>
+        </div>
+      </section>
 
-    <section id="skills">
-      <div class="container">
-        <h2 class="u-text-center u-mb-lg">Skills</h2>
-        <div class="p-skills">
-          <div class="c-card">
-            <h3 class="c-card__title">Sass</h3>
-            <p class="c-card__text">設計重視のCSS設計</p>
-          </div>
-          <div class="c-card">
-            <h3 class="c-card__title">FLOCSS</h3>
-            <p class="c-card__text">保守性重視設計</p>
-          </div>
-          <div class="c-card">
-            <h3 class="c-card__title">Responsive</h3>
-            <p class="c-card__text">モバイルファースト</p>
+      <section id="skills">
+        <div class="container">
+          <h2 class="u-text-center u-mb-lg">Skills</h2>
+          <div class="p-skills">
+            <div class="c-card">
+              <h3 class="c-card__title">Sass</h3>
+              <p class="c-card__text">設計重視のCSS設計</p>
+            </div>
+            <div class="c-card">
+              <h3 class="c-card__title">FLOCSS</h3>
+              <p class="c-card__text">保守性重視設計</p>
+            </div>
+            <div class="c-card">
+              <h3 class="c-card__title">Responsive</h3>
+              <p class="c-card__text">モバイルファースト</p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="projects">
-      <div class="container">
-        <h2 class="u-text-center u-mb-lg">Projects</h2>
-        <div class="p-projects">
-          <div class="c-card c-card--featured">
-            <h3 class="c-card__title">Portfolio Site</h3>
-            <p class="c-card__text">Sass × GitHub Pages</p>
-          </div>
-          <a class="c-card c-card--link" href="./task/">
-            <h3 class="c-card__title">Task Management App</h3>
-            <p class="c-card__text">CRUD × localStorage × State Management</p>
-          </a>
-          <div class="c-card">
-            <h3 class="c-card__title">Landing Page</h3>
-            <p class="c-card__text">Grid Layout Design</p>
+      <section id="projects">
+        <div class="container">
+          <h2 class="u-text-center u-mb-lg">Projects</h2>
+          <div class="p-projects">
+            <div class="c-card c-card--featured">
+              <h3 class="c-card__title">Portfolio Site</h3>
+              <p class="c-card__text">Sass × GitHub Pages</p>
+            </div>
+            <a class="c-card c-card--link" href="./task/">
+              <h3 class="c-card__title">Task Management App</h3>
+              <p class="c-card__text">CRUD × localStorage × State Management</p>
+            </a>
+            <div class="c-card">
+              <h3 class="c-card__title">Landing Page</h3>
+              <p class="c-card__text">Grid Layout Design</p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="architecture">
-      <div class="container">
-        <h2 class="u-text-center u-mb-lg">Architecture</h2>
-        <div class="p-architecture">
-          <div class="c-card">
-            <h3 class="c-card__title">ITCSS × FLOCSS</h3>
-            <p class="c-card__text">
-              レイヤー構造に基づき設計し、 保守性と拡張性を意識しています。
-            </p>
-          </div>
-          <div class="c-card">
-            <h3 class="c-card__title">Performance First</h3>
-            <p class="c-card__text">
-              Lighthouse 90以上を維持し、 無駄なJavaScriptを排除しています。
-            </p>
+      <section id="architecture">
+        <div class="container">
+          <h2 class="u-text-center u-mb-lg">Architecture</h2>
+          <div class="p-architecture">
+            <div class="c-card">
+              <h3 class="c-card__title">ITCSS × FLOCSS</h3>
+              <p class="c-card__text">
+                レイヤー構造に基づき設計し、 保守性と拡張性を意識しています。
+              </p>
+            </div>
+            <div class="c-card">
+              <h3 class="c-card__title">Performance First</h3>
+              <p class="c-card__text">
+                Lighthouse 90以上を維持し、 無駄なJavaScriptを排除しています。
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
     <footer class="l-footer">
       <p class="l-footer__text">© 2026 Koichi Kurita</p>

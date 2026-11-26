@@ -1,3 +1,5 @@
+@use '../settings' as *;
+
 .p-task {
   &__input {
     display: flex;
@@ -25,6 +27,12 @@
       padding: 0.5rem 1rem;
       border-radius: 6px;
       cursor: pointer;
+
+      // 選択中のフィルター：見た目と aria-pressed（支援技術に伝える状態）を連動させる
+      &[aria-pressed='true'] {
+        background: $color-primary-strong;
+        border-color: $color-primary-strong;
+      }
     }
   }
 
@@ -46,7 +54,22 @@
     opacity: 0.6;
   }
 
+  input[type='checkbox'] {
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    accent-color: $color-primary;
+  }
+
+  span {
+    flex: 1;
+    margin-inline: 0.75rem;
+    overflow-wrap: anywhere; // 長い英数字が続いても、はみ出さずに折り返す
+  }
+
   .delete {
+    // タップしやすい大きさを確保する（WCAG 2.5.8 は最低 24px、推奨は 44px）
+    min-inline-size: 2.75rem;
+    min-block-size: 2.75rem;
     background: none;
     border: none;
     color: #ff6584;

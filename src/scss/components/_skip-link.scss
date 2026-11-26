@@ -1,0 +1,22 @@
+@use '../settings' as *;
+
+// ===============================
+// Component: Skip Link
+// キーボード操作で最初に Tab を押したときだけ表示される「本文へスキップ」リンク
+// （毎ページ、ヘッダーのナビゲーションを Tab で通過しなくて済むようにする）
+// ===============================
+.c-skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 2000; // 固定ヘッダー（z-index: 1000）より手前に表示する
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: $color-primary;
+  color: #fff;
+  transform: translateY(-200%); // 通常は画面の外に隠す
+
+  &:focus {
+    transform: translateY(0);
+  }
+}

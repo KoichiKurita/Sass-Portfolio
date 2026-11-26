@@ -2,6 +2,14 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem; // ページ内リンクで移動したとき、見出しが固定ヘッダーに隠れないようにする
+}
+
+// キーボード操作中のフォーカス位置を、すべての要素で見えるようにする
+// （:focus-visible はマウスでクリックしたときには表示されない）
+:focus-visible {
+  outline: 2px solid $color-primary;
+  outline-offset: 2px;
 }
 
 body {

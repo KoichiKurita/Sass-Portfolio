@@ -6,36 +6,50 @@
     <title>Task Management</title>
   </head>
   <body>
+    <a class="c-skip-link" href="#main">本文へスキップ</a>
+
     <header class="l-header">
       <div class="l-header__logo">Koichi Kurita</div>
-      <nav class="l-header__nav">
+      <nav class="l-header__nav" aria-label="メイン">
         <a href="../">Home</a>
       </nav>
     </header>
 
-    <section class="p-hero p-hero--small">
-      <div class="p-hero__inner">
-        <h1 class="p-hero__title">Task Management App</h1>
-        <p class="p-hero__subtitle">CRUD × localStorage × State Management</p>
-      </div>
-    </section>
-
-    <section class="container p-task">
-      <div class="c-card">
-        <div class="p-task__input">
-          <input type="text" id="task-input" placeholder="Add new task" />
-          <button id="add-task" class="c-button">Add</button>
+    <main id="main">
+      <section class="p-hero p-hero--small">
+        <div class="p-hero__inner">
+          <h1 class="p-hero__title">Task Management App</h1>
+          <p class="p-hero__subtitle">CRUD × localStorage × State Management</p>
         </div>
+      </section>
 
-        <div class="p-task__filter">
-          <button data-filter="all">All</button>
-          <button data-filter="active">Active</button>
-          <button data-filter="completed">Completed</button>
+      <section class="container p-task">
+        <div class="c-card">
+          <form id="task-form" class="p-task__input">
+            <label for="task-input" class="u-visually-hidden">新しいタスク</label>
+            <input
+              type="text"
+              id="task-input"
+              name="task"
+              placeholder="Add new task"
+              autocomplete="off"
+            />
+            <button id="add-task" class="c-button" type="submit">Add</button>
+          </form>
+
+          <div class="p-task__filter" role="group" aria-label="表示するタスクの絞り込み">
+            <button type="button" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" data-filter="active" aria-pressed="false">Active</button>
+            <button type="button" data-filter="completed" aria-pressed="false">Completed</button>
+          </div>
+
+          <ul id="task-list" class="p-task__list" aria-label="タスク一覧"></ul>
+
+          <!-- 操作結果をスクリーンリーダーに伝える（画面には表示しない） -->
+          <p id="task-status" class="u-visually-hidden" role="status"></p>
         </div>
-
-        <ul id="task-list" class="p-task__list"></ul>
-      </div>
-    </section>
+      </section>
+    </main>
 
     <script type="module" src="/src/main.js"></script>
     <script type="module" src="/src/js/task/index.js"></script>

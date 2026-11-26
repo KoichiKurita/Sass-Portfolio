@@ -1,5 +1,14 @@
 import { describe, it, expect, beforeEach } from 'vitest'
-import { setTasks, getTasks, addTask, removeTask, toggleTask, setFilter, getFilter } from './state'
+import {
+  setTasks,
+  getTasks,
+  addTask,
+  removeTask,
+  toggleTask,
+  nextId,
+  setFilter,
+  getFilter,
+} from './state'
 
 // state.js はモジュール内の変数に状態を持つため、テストごとに初期状態へ戻す
 beforeEach(() => {
@@ -54,6 +63,17 @@ describe('state', () => {
     toggleTask(999)
 
     expect(getTasks()).toEqual([{ id: 1, text: 'A', completed: false }])
+  })
+
+  it('nextId は、タスクがなければ 1、あれば最大の ID + 1 を返す', () => {
+    expect(nextId()).toBe(1)
+
+    setTasks([
+      { id: 3, text: 'A', completed: false },
+      { id: 7, text: 'B', completed: false },
+    ])
+
+    expect(nextId()).toBe(8)
   })
 
   it('setFilter で絞り込み条件を変更できる', () => {

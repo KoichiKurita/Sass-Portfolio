@@ -11,3 +11,17 @@
     display: none !important;
   }
 }
+
+// 画面には表示せず、スクリーンリーダーには読み上げさせる
+// （display: none や visibility: hidden は読み上げからも消えてしまうため使わない）
+.u-visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
