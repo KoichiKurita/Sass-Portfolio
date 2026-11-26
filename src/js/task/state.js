@@ -14,13 +14,11 @@ export function addTask(task) {
 }
 
 export function removeTask(id) {
-  tasks = tasks.filter(t => t.id !== id)
+  tasks = tasks.filter((t) => t.id !== id)
 }
 
 export function toggleTask(id) {
-  tasks = tasks.map(t =>
-    t.id === id ? { ...t, completed: !t.completed } : t
-  )
+  tasks = tasks.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t))
 }
 
 export function setFilter(value) {

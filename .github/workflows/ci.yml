@@ -37,6 +37,9 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Test (with coverage)
+        run: npm run test:coverage # カバレッジがしきい値を下回ると失敗する
+
       - name: Build
         run: npm run build
 
