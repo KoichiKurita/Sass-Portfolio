@@ -6,6 +6,7 @@
 .l-footer {
   padding: 1.5rem 1rem;
   text-align: center;
+
   // 文字色の15%の濃さの線：ダーク／ライトどちらのテーマでも馴染む
   border-top: 1px solid color-mix(in srgb, var(--color-text) 15%, transparent);
 
