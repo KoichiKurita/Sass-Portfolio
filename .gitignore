@@ -43,3 +43,11 @@ Thumbs.db
 # ------------------------------
 .eslintcache
 coverage/
+
+# ------------------------------
+# Playwright（E2E テスト）の実行結果
+# ------------------------------
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

@@ -15,10 +15,13 @@
     "lint:js": "eslint .",
     "lint:css": "stylelint \"src/**/*.scss\"",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "test:e2e": "playwright test"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.1",
     "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.65.1",
     "@vitest/coverage-v8": "^5.1.2",
     "eslint": "^10.15.0",
     "globals": "^17.14.0",
