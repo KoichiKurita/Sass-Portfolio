@@ -8,16 +8,22 @@
     "build": "vite build",
     "preview": "vite preview",
     "prepare": "husky install",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@vitest/coverage-v8": "^5.1.2",
     "eslint": "^10.15.0",
     "globals": "^17.14.0",
     "husky": "^8.0.0",
+    "jsdom": "^31.0.1",
     "prettier": "^3.10.1",
     "sass": "^1.108.2",
-    "vite": "^8.3.8"
+    "vite": "^8.3.8",
+    "vitest": "^5.1.2"
   },
   "engines": {
     "node": ">=22.12"
